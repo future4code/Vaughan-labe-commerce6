@@ -17,56 +17,48 @@ const arrayProdutos = [
     nome: "Camiseta Pink Meditação do Nauta",
     valor: 45.99,
     foto: Produto1,
-    quantidade: 0
   },
   {
     id: 2,
     nome: "Camiseta Green Water Planeta",
     valor: 39.99,
     foto: Produto3,
-    quantidade: 0
   },
   {
     id: 3,
     nome: "Camiseta Black Fases da Lua",
     valor: 39.99,
     foto: Produto2,
-    quantidade: 0
   },
   {
     id: 4,
     nome: "Camiseta Blue Astronaltinhas",
     valor: 45.99,
     foto: Produto4,
-    quantidade: 0
   },
   {
     id: 5,
     nome: "Camisa White Gato Galático",
     valor: 89.99,
     foto: Produto5,
-    quantidade: 0
   },
   {
     id: 6,
     nome: "Camiseta Black White Planetário",
     valor: 95.99,
     foto: Produto7,
-    quantidade: 0
   },
   {
     id: 7,
     nome: "Camiseta Black Planetas in Dark",
     valor: 59.99,
     foto: Produto6,
-    quantidade: 0
-  }, 
+  },
   {
     id: 8,
     nome: "Camisa White Viagem Espacial",
     valor: 89.99,
     foto: Produto8,
-    quantidade: 0
   },
 ];
 
@@ -87,38 +79,41 @@ const ProdutosContainer = styled.div`
 class App extends React.Component {
   state = {
     produtos: arrayProdutos,
-    ordenacao: 1,
+    ordenacao: -1,
   };
 
   onChangeOrdenacao = (event) => {
-
     this.setState({ ordenacao: event.target.value })
   }
 
   render() {
-    const listaProdutos = this.state.produtos.map((p) => {
-      return (
-        <Produto key={p.id}
-          nomeProduto={p.nome}
-          valorProduto={p.valor}
-          fotoProduto={p.foto}
-        />
-      )
-    })
-
-    this.state.produtos.sort((prod, proxProd) => {
+    const listaProdutos = this.state.produtos
+      .sort((prod, proxProd) => {
         return this.state.ordenacao * (prod.valor - proxProd.valor)
-    })
-    
+      })
+
+      .map((p) => {
+        return (
+          <Produto key={p.id}
+            nomeProduto={p.nome}
+            valorProduto={p.valor}
+            fotoProduto={p.foto}
+          />
+        )
+      })
+
     return (
       <div>
         <InfoProdutos>
           <p>Quantidade de Produtos: {listaProdutos.length}</p>
 
-          <Filters
-          ordenacao = {this.ordenacao}
-          onChangeOrdenacao = {this.onChangeOrdenacao}
-          />
+          <div>
+            <Filters
+              ordenacao={this.ordenacao}
+              onChangeOrdenacao={this.onChangeOrdenacao}
+            />
+          </div>
+    
         </InfoProdutos>
 
         <ProdutosContainer>
