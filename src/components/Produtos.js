@@ -5,10 +5,18 @@ const ProdutoContainer = styled.div`
   border: 1px solid gray;
   width: 300px;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const ProdutoPhoto = styled.img`
   width: 100%;
+`
+const Button = styled.button `
+  background-color: #99DFCE;
+  border-radius: 10px;
+  height: 25px;
 `
 
 class Produto extends React.Component {
@@ -17,11 +25,11 @@ class Produto extends React.Component {
 
     return (
       <ProdutoContainer >
-        <a><ProdutoPhoto src={this.props.fotoProduto} alt={"Imagem do produto"} /></a>
+        <ProdutoPhoto src={this.props.fotoProduto} alt={"Imagem do produto"} />
         <p>{this.props.nomeProduto}</p>
         <p>R${this.props.valorProduto}</p>
 
-        <button>Adicionar ao Carrinho</button>
+        <Button>Adicionar ao Carrinho</Button>
         
       </ProdutoContainer>
     );
