@@ -79,7 +79,7 @@ const ProdutosContainer = styled.div`
 class App extends React.Component {
   state = {
     produtos: arrayProdutos,
-    ordenacao: -1,
+    ordenacao: 1,
   };
 
   onChangeOrdenacao = (event) => {

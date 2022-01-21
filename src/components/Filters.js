@@ -12,8 +12,8 @@ class Filtros extends React.Component {
             value={this.props.ordenacao}
             onChange={this.props.onChangeOrdenacao}
           >
-            <option value={-1}>Crescente</option>
-            <option value={1}>Decrescente</option>
+            <option value={1}>Crescente</option>
+            <option value={-1}>Decrescente</option>
           </select>
         </div>
       </div>
