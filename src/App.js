@@ -70,6 +70,10 @@ const arrayProdutos = [
   },
 ];
 
+const colunas = styled.div`
+  display: grid;
+
+`
 
 const InfoProdutos = styled.div`
     display: grid;
@@ -88,7 +92,13 @@ class App extends React.Component {
   state = {
     produtos: arrayProdutos,
     ordenacao: 1,
+    busca: "",
   };
+
+  onChangeBusca = (event) => {
+
+    this.setState({busca: event.target.value})
+  }
 
   onChangeOrdenacao = (event) => {
 
@@ -96,7 +106,14 @@ class App extends React.Component {
   }
 
   render() {
-    const listaProdutos = this.state.produtos.map((p) => {
+    const listaProdutos = this.state.produtos
+    .filter((produto) => { 
+      return produto.nome.toLowerCase().includes(this.state.busca.toLocaleLowerCase())
+    })
+
+    
+
+    .map((p) => {
       return (
         <Produto key={p.id}
           nomeProduto={p.nome}
@@ -116,9 +133,12 @@ class App extends React.Component {
           <p>Quantidade de Produtos: {listaProdutos.length}</p>
 
           <Filters
+          busca={this.busca}
+          onChangeBusca={this.onChangeBusca}
           ordenacao = {this.ordenacao}
           onChangeOrdenacao = {this.onChangeOrdenacao}
           />
+          
         </InfoProdutos>
 
         <ProdutosContainer>
