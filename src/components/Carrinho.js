@@ -1,46 +1,30 @@
-import React from "react";
+import React from "react"
+import CarrinhoItens from "./CarrinhoItens"
+import styled from "styled-components"
 
-export default class Produto extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            quantidade: 0
-        };
-        //eventos
-        this.add = this.add.bind(this);
-        this.revome = this.remove.bind(this);
+
+class Carrinho extends React.Component {
+
+    valorTotal = () => {
+        let valorTotal = 0
+        for (let produtos of this.props.produtos) {
+            valorTotal += produtos.valor * produtos.quantidade;
+        }
+        return valorTotal
     }
-    add() {
-        this.setState({
-            quantidade: this.state.quantidade + 1
-        });
+    render() {
+        return (
+
+            <div>
+                <h3>Carrinho:</h3>
+                {this.props.produtos.map((item) => {
+
+                    return <CarrinhoItens CarrinhoItens={item} remove={this.props.removerProduto} />
+                })}
+
+                <p>Valor Total: R${this.valorTotal()},00</p>
+            </div>
+        )
     }
-    remove() {
-        this.setState({
-            quantidade: this.state.quantidade - 1
-        });
-      }
-        render() {
-            return (
-                <div>
-                        <div>
-                            <h4>
-                                {this.nome}: R$ {this.valor}
-                            </h4>
-                        </div>
-                        <div   >
-                            quantidade: {this.props.quantidade}
-                        </div>
-                        <div>
-                            <div>
-                                <button   >informações</button>
-                            </div>
-                            <div>
-                                <button onClick={this.add} >+1</button>
-                                <button onClick={this.remove} >-1</button>
-                            </div>
-                        </div>
-                </div>
-            )
-        };
-    }
+}
+export default Carrinho
