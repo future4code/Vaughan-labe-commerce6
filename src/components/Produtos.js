@@ -23,13 +23,19 @@ class Produto extends React.Component {
 
   render() {
 
+    let carrinho = this.props.chave
+
     return (
       <ProdutoContainer >
         <ProdutoPhoto src={this.props.fotoProduto} alt={"Imagem do produto"} />
         <p>{this.props.nomeProduto}</p>
         <p>R${this.props.valorProduto}</p>
 
-        <Button>Adicionar ao Carrinho</Button>
+        <Button
+        onClick={() =>this.props.adicionarProduto(2)}
+        onClick={() =>this.props.adicionarProduto(carrinho)}
+
+        >Adicionar ao Carrinho</Button>
         
       </ProdutoContainer>
     );
