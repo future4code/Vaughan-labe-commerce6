@@ -63,6 +63,10 @@ const arrayProdutos = [
   },
 ];
 
+const colunas = styled.div`
+  display: grid;
+
+`
 
 const AppContainer = styled.div`
   display: grid;
@@ -70,7 +74,6 @@ const AppContainer = styled.div`
   justify-items: center;
   padding: 10px;
 `
-
 
 const InfoProdutos = styled.div`
     display: grid;
@@ -130,6 +133,7 @@ class App extends React.Component {
   onChangeOrdenacao = (event) => {
     this.setState({ ordenacao: event.target.value })
   }
+
 
   adicionarProduto = (id) => {
     const produtoCarrinho = this.state.lista.find(item => id === item.id)
